@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         isMoving = false;
-        scoreText.text = "Score:  0";
+        scoreText.text = "Score: 0";
+        timerText.text = "Timer: 00:00";
         finishPopUp.SetActive(false);
     }
 
