@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private float bestTime;
     private int bestScore;
 
-    public AudioManager soundsController;
+    //public AudioManager soundsController;
 
     private void Start()
     {
@@ -104,17 +104,20 @@ public class PlayerController : MonoBehaviour
             {
                 case "Coin":
                     IncreaseScore(10);
-                    soundsController.PlayCollectItemSound("Coin");
+                    AudioManager.instance.PlayCollectItemSound("Coin");
+                    //soundsController.PlayCollectItemSound("Coin");
                     break;
 
                 case "SpeedPotion":
                     ChangeSpeed(2f, 5f);
-                    soundsController.PlayCollectItemSound("SpeedPotion");
+                    AudioManager.instance.PlayCollectItemSound("SpeedPotion");
+                    //soundsController.PlayCollectItemSound("SpeedPotion");
                     break;
 
                 case "SlowPotion":
                     ChangeSpeed(0.5f, 5f);
-                    soundsController.PlayCollectItemSound("SlowPotion");
+                    AudioManager.instance.PlayCollectItemSound("SlowPotion");
+                    //soundsController.PlayCollectItemSound("SlowPotion");
                     break;
 
                 default:
@@ -223,7 +226,8 @@ public class PlayerController : MonoBehaviour
             SaveBestTime();
             SaveBestScore();
             ShowFinishPopup();
-            soundsController.PlayFinishSound();
+            AudioManager.instance.PlayFinishSound();
+            //soundsController.PlayFinishSound();
         }
     }
 

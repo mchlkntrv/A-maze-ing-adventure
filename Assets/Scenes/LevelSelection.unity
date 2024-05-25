@@ -1543,6 +1543,7 @@ MonoBehaviour:
   speedPotionSound: {fileID: 0}
   slowPotionSound: {fileID: 0}
   buttonClickSound: {fileID: 8300000, guid: 77cc6c5ee5685fd4085a3805637e6d2b, type: 3}
+  backgroundMusic: {fileID: 0}
 --- !u!4 &1362941885
 Transform:
   m_ObjectHideFlags: 0
@@ -2267,6 +2268,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931ad29b5ba7f9549851b7d6d4b0eab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNames:
+  - Level1
+  - Level2
+  - Level3
+  - Level4
+  - Level5
+  - Level6
+  levelButtons:
+  - {fileID: 64662143}
+  - {fileID: 1544645987}
+  - {fileID: 919481567}
+  - {fileID: 1052756526}
+  - {fileID: 548010513}
+  - {fileID: 2123333373}
 --- !u!1 &2123333373
 GameObject:
   m_ObjectHideFlags: 0

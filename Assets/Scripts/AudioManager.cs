@@ -1,25 +1,51 @@
 using System;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance; 
+
     public AudioClip finishSound;
     public AudioClip coinSound;
     public AudioClip speedPotionSound;
     public AudioClip slowPotionSound;
     public AudioClip buttonClickSound;
+    public AudioClip backgroundMusic;
 
     private AudioSource audioSource;
-
-    void Start()
-    {
-        audioSource = gameObject.AddComponent<AudioSource>();
-    }
+    private AudioSource backgroundMusicSource;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+            backgroundMusicSource = gameObject.AddComponent<AudioSource>();
+            backgroundMusicSource.clip = backgroundMusic;
+            backgroundMusicSource.loop = true;
+            backgroundMusicSource.Play();
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject); 
+            return;
+        }
+    }
+
+    public void PlayBackgroundMusic()
+    {
+        if (backgroundMusicSource.mute)
+        {
+            backgroundMusicSource.mute = false;
+        }
+        else
+        {
+            backgroundMusicSource.mute = true;
+        }
     }
 
     public void PlayButtonClickSound()
