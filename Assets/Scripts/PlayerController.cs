@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private float bestTime;
     private int bestScore;
 
-    public Button nextLevelButton;
+    public AudioManager soundsController;
 
     private void Start()
     {
@@ -50,8 +50,6 @@ public class PlayerController : MonoBehaviour
         levelKey = "Level_" + SceneManager.GetActiveScene().name;
         bestTime = PlayerPrefs.GetFloat(levelKey + "_BestTime", float.MaxValue);
         bestScore = PlayerPrefs.GetInt(levelKey + "_BestScore", 0);
-
-        nextLevelButton.onClick.AddListener(OnNextLevelButton);
     }
 
     void Update()
@@ -100,28 +98,29 @@ public class PlayerController : MonoBehaviour
         if (tile != null)
         {
             string tileName = tile.name;
+            Debug.Log("Tile");
 
             switch (tileName)
             {
                 case "Coin":
-                    Debug.Log("Coin Collected!");
                     IncreaseScore(10);
+                    soundsController.PlayCollectItemSound("Coin");
                     break;
 
                 case "SpeedPotion":
-                    Debug.Log("Speed Potion Collected!");
                     ChangeSpeed(2f, 5f);
+                    soundsController.PlayCollectItemSound("SpeedPotion");
                     break;
 
                 case "SlowPotion":
-                    Debug.Log("Slow Potion Collected!");
                     ChangeSpeed(0.5f, 5f);
+                    soundsController.PlayCollectItemSound("SlowPotion");
                     break;
 
                 default:
-                    Debug.Log("Unknown Collectible!");
                     break;
             }
+
 
             collectibles.SetTile(cellPosition, null);
         }
@@ -160,7 +159,6 @@ public class PlayerController : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score.ToString();
-            Debug.Log("Score: " + score.ToString());
         }
     }
 
@@ -182,9 +180,8 @@ public class PlayerController : MonoBehaviour
         if (timer < bestTime)
         {
             bestTime = timer;
-            PlayerPrefs.SetFloat(levelKey, bestTime);
+            PlayerPrefs.SetFloat(levelKey + "_BestTime", bestTime);
             PlayerPrefs.Save();
-            Debug.Log("New best time: " + bestTime);
         }
     }
 
@@ -195,7 +192,6 @@ public class PlayerController : MonoBehaviour
             bestScore = score;
             PlayerPrefs.SetInt(levelKey + "_BestScore", bestScore);
             PlayerPrefs.Save();
-            Debug.Log("New best score: " + bestScore);
         }
     }
 
@@ -214,14 +210,7 @@ public class PlayerController : MonoBehaviour
         minutes = Mathf.FloorToInt(bestTime / 60f);
         seconds = Mathf.FloorToInt(bestTime % 60f);
         timeString = string.Format("{0:00}:{1:00}", minutes, seconds);
-
         bestTimeText.text = "Best time: " + timeString;
-
-    }
-
-    private void OnNextLevelButton()
-    {
-        LevelManager.instance.LoadNextLevel();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -231,22 +220,18 @@ public class PlayerController : MonoBehaviour
             reachedFinish = true;
             isMoving = false;
             StopTimer();
-
             SaveBestTime();
             SaveBestScore();
             ShowFinishPopup();
-
-            Debug.Log("Finish reached!");
+            soundsController.PlayFinishSound();
         }
     }
-
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject == startTrigger)
         {
             StartTimer();
-            Debug.Log("Start exited!");
         }
     }
 }

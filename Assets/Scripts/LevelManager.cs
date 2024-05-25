@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
+        Debug.Log("Loading level: " + levelName);
         SceneManager.LoadScene(levelName);
     }
 }

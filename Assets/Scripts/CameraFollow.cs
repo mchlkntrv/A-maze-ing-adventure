@@ -11,7 +11,6 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 newPosition = new Vector3(target.position.x + offset.x, target.position.y + offset.y, transform.position.z);
             transform.position = newPosition;
-
         }
     }
 }
