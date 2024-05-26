@@ -17,8 +17,7 @@ public class UIManager : MonoBehaviour
         levelSelectionButton.onClick.AddListener(OnLevelSelectionButton);
         restartLevelButton.onClick.AddListener(OnRestartLevelButton);
 
-        muteButton = GameObject.Find("MuteButton")?.GetComponent<Button>();
-        if (muteButton != null)
+        if (GameObject.Find("MuteButton").TryGetComponent<Button>(out muteButton))
         {
             muteButton.onClick.RemoveAllListeners();
             muteButton.onClick.AddListener(OnMuteButton);
@@ -33,35 +32,25 @@ public class UIManager : MonoBehaviour
     private void OnNextLevelButton()
     {
         AudioManager.instance.PlayButtonClickSound();
-        if (LevelManager.instance != null)
-        {
-            LevelManager.instance.LoadNextLevel();
-        }
-        else
-        {
-            Debug.LogError("LevelManager instance is not set!");
-        }
+        LevelManager.instance.LoadNextLevel();
     }
 
     private void OnQuitButton()
     {
+        PlayerPrefs.DeleteAll();
         AudioManager.instance.PlayButtonClickSound();
-
         Application.Quit();
-        Debug.Log("Application Quit");
     }
 
     private void OnLevelSelectionButton()
     {
         AudioManager.instance.PlayButtonClickSound();
-
         SceneManager.LoadScene("LevelSelection");
     }
 
     private void OnRestartLevelButton()
     {
         AudioManager.instance.PlayButtonClickSound();
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

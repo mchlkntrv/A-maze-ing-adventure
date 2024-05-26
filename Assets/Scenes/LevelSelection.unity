@@ -1525,7 +1525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1362941884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,20 +2268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931ad29b5ba7f9549851b7d6d4b0eab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNames:
-  - Level1
-  - Level2
-  - Level3
-  - Level4
-  - Level5
-  - Level6
-  levelButtons:
-  - {fileID: 64662143}
-  - {fileID: 1544645987}
-  - {fileID: 919481567}
-  - {fileID: 1052756526}
-  - {fileID: 548010513}
-  - {fileID: 2123333373}
 --- !u!1 &2123333373
 GameObject:
   m_ObjectHideFlags: 0

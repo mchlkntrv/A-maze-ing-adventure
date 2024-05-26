@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public TMP_Text bestTimeText;
     public GameObject finishPopUp;
 
+    public GameObject quitConfirmationPanel;
+    public Button yesButton;
+    public Button noButton;
+
     public TMP_Text timerText;
     private float timer = 0f;
     private bool counting = false;
@@ -36,7 +40,6 @@ public class PlayerController : MonoBehaviour
     private float bestTime;
     private int bestScore;
 
-    //public AudioManager soundsController;
 
     private void Start()
     {
@@ -46,6 +49,10 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: 0";
         timerText.text = "Timer: 00:00";
         finishPopUp.SetActive(false);
+
+        quitConfirmationPanel.SetActive(false);
+        yesButton.onClick.AddListener(OnYesButton);
+        noButton.onClick.AddListener(OnNoButton);
 
         levelKey = "Level_" + SceneManager.GetActiveScene().name;
         bestTime = PlayerPrefs.GetFloat(levelKey + "_BestTime", float.MaxValue);
@@ -87,7 +94,33 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("IsMoving", isMoving);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowQuitConfirmationPanel();
+        }
+    }
+
+    private void ShowQuitConfirmationPanel()
+    {
+        quitConfirmationPanel.SetActive(true);
+    }
+
+    private void HideQuitConfirmationPanel()
+    {
+        quitConfirmationPanel.SetActive(false);
+    }
+    private void OnYesButton()
+    {
+        HideQuitConfirmationPanel();
+        Application.Quit();
+    }
+
+    private void OnNoButton()
+    {
+        HideQuitConfirmationPanel();
+        PlayerPrefs.DeleteAll();
+        Application.Quit();
     }
 
     void CollectItem(Vector2 position)
@@ -98,26 +131,25 @@ public class PlayerController : MonoBehaviour
         if (tile != null)
         {
             string tileName = tile.name;
-            Debug.Log("Tile");
 
             switch (tileName)
             {
                 case "Coin":
                     IncreaseScore(10);
                     AudioManager.instance.PlayCollectItemSound("Coin");
-                    //soundsController.PlayCollectItemSound("Coin");
                     break;
-
+                case "DoubleCoin":
+                    IncreaseScore(25);
+                    AudioManager.instance.PlayCollectItemSound("Coin");
+                    break;
                 case "SpeedPotion":
                     ChangeSpeed(2f, 5f);
                     AudioManager.instance.PlayCollectItemSound("SpeedPotion");
-                    //soundsController.PlayCollectItemSound("SpeedPotion");
                     break;
 
                 case "SlowPotion":
                     ChangeSpeed(0.5f, 5f);
                     AudioManager.instance.PlayCollectItemSound("SlowPotion");
-                    //soundsController.PlayCollectItemSound("SlowPotion");
                     break;
 
                 default:
@@ -227,7 +259,6 @@ public class PlayerController : MonoBehaviour
             SaveBestScore();
             ShowFinishPopup();
             AudioManager.instance.PlayFinishSound();
-            //soundsController.PlayFinishSound();
         }
     }
 

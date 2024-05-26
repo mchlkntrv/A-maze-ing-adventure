@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("You have finished all levels!");
+            SceneManager.LoadScene("LevelSelection");
         }
     }
 
@@ -39,7 +39,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
-        Debug.Log("Loading level: " + levelName);
         SceneManager.LoadScene(levelName);
     }
 }
