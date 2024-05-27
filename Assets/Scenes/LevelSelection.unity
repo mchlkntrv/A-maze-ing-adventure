@@ -1520,12 +1520,12 @@ GameObject:
   - component: {fileID: 1362941885}
   - component: {fileID: 1362941884}
   m_Layer: 0
-  m_Name: AudioController
+  m_Name: SoundsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1362941884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,12 +1538,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d749de9633eb2f44b12de6103ce9ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishSound: {fileID: 0}
-  coinSound: {fileID: 0}
-  speedPotionSound: {fileID: 0}
-  slowPotionSound: {fileID: 0}
+  finishSound: {fileID: 8300000, guid: 6d9fce5eadfaf754c833aa2d219e72d0, type: 3}
+  coinSound: {fileID: 8300000, guid: 21be1fce96e4a66468c5c5e72b82ecc5, type: 3}
+  speedPotionSound: {fileID: 8300000, guid: c880934e2d1805240a541bd8aacc7a7b, type: 3}
+  slowPotionSound: {fileID: 8300000, guid: c0f32069b9ce85140a9804dea7fe1c46, type: 3}
   buttonClickSound: {fileID: 8300000, guid: 77cc6c5ee5685fd4085a3805637e6d2b, type: 3}
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: c7b25a49e711f3043b07b0a569f61be6, type: 3}
 --- !u!4 &1362941885
 Transform:
   m_ObjectHideFlags: 0

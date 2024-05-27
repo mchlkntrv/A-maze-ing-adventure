@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public Button nextLevelButton;
-    public Button quitButton;
-    public Button levelSelectionButton;
-    public Button restartLevelButton;
-    public Button muteButton;
+    [SerializeField] private Button nextLevelButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private Button levelSelectionButton;
+    [SerializeField] private Button restartLevelButton;
+    [SerializeField] private Button muteButton;
 
     private void Start()
     {

@@ -1,17 +1,14 @@
-using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-
-    public AudioClip finishSound;
-    public AudioClip coinSound;
-    public AudioClip speedPotionSound;
-    public AudioClip slowPotionSound;
-    public AudioClip buttonClickSound;
-    public AudioClip backgroundMusic;
-
+    [SerializeField] private AudioClip finishSound;
+    [SerializeField] private AudioClip coinSound;
+    [SerializeField] private AudioClip speedPotionSound;
+    [SerializeField] private AudioClip slowPotionSound;
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip backgroundMusic;
     private AudioSource audioSource;
     private AudioSource backgroundMusicSource;
 
@@ -20,12 +17,10 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
-
             backgroundMusicSource = gameObject.AddComponent<AudioSource>();
             backgroundMusicSource.clip = backgroundMusic;
             backgroundMusicSource.loop = true;
             backgroundMusicSource.Play();
-
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
