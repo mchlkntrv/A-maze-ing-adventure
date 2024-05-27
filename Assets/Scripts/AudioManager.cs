@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance; 
+    public static AudioManager instance;
 
     public AudioClip finishSound;
     public AudioClip coinSound;
@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
     }

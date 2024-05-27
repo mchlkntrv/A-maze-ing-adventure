@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                rb.velocity = Vector2.zero;
                 isMoving = false;
             }
 
